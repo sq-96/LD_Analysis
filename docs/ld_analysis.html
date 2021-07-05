@@ -476,16 +476,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree8de540542088697251f1f13e3ed0e75cc93d2a71targetblank8de5405a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/8de540542088697251f1f13e3ed0e75cc93d2a71" target="_blank">8de5405</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreed817a3fde882fe9e071b210df3cf43849d34ee53targetblankd817a3fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/d817a3fde882fe9e071b210df3cf43849d34ee53" target="_blank">d817a3f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree8de540542088697251f1f13e3ed0e75cc93d2a71targetblank8de5405a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreed817a3fde882fe9e071b210df3cf43849d34ee53targetblankd817a3fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/8de540542088697251f1f13e3ed0e75cc93d2a71" target="_blank">8de5405</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/d817a3fde882fe9e071b210df3cf43849d34ee53" target="_blank">d817a3f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -543,6 +543,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/LD_Analysis/blob/d817a3fde882fe9e071b210df3cf43849d34ee53/analysis/ld_analysis.Rmd" target="_blank">d817a3f</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/LD_Analysis/e77076d288300ace973500542af05a9da43cf03e/docs/ld_analysis.html" target="_blank">e77076d</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -807,18 +841,41 @@ Publish the initial files for myproject
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<pre class="r"><code>rbind(value1[1:20],value2[1:20],value3[1:20],value4[1:20])</code></pre>
-<pre><code>       [,1]   [,2]   [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]
-[1,] 29.065 18.070 10.046 9.695 8.266 3.396 2.458 1.798 1.714 1.609 1.432 1.208
-[2,] 31.328 18.959  9.930 8.578 7.777 2.856 2.765 1.860 1.630 1.561 1.416 1.138
-[3,] 32.999 17.835 10.803 9.199 7.103 2.979 2.291 1.768 1.573 1.536 1.337 1.148
-[4,] 31.035 18.421  9.739 9.504 7.758 3.028 2.508 1.734 1.673 1.487 1.395 1.142
-     [,13] [,14] [,15] [,16] [,17] [,18] [,19] [,20]
-[1,] 1.129 1.089 1.007 0.962 0.647 0.626 0.611 0.528
-[2,] 1.128 0.951 0.885 0.737 0.717 0.647 0.526 0.451
-[3,] 1.077 0.992 0.948 0.822 0.666 0.588 0.425 0.417
-[4,] 1.082 1.019 0.995 0.948 0.686 0.649 0.499 0.434</code></pre>
-<p><img src="figure/ld_analysis.Rmd/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>value_df &lt;- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
+rownames(value_df) &lt;- c(&quot;EUR_sub1&quot;,&quot;EUR_sub2&quot;,&quot;EUR_sub3&quot;,&quot;EUR_All&quot;)
+value_df</code></pre>
+<pre><code>           [,1]   [,2]   [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]
+EUR_sub1 29.065 18.070 10.046 9.695 8.266 3.396 2.458 1.798 1.714 1.609
+EUR_sub2 31.328 18.959  9.930 8.578 7.777 2.856 2.765 1.860 1.630 1.561
+EUR_sub3 32.999 17.835 10.803 9.199 7.103 2.979 2.291 1.768 1.573 1.536
+EUR_All  31.035 18.421  9.739 9.504 7.758 3.028 2.508 1.734 1.673 1.487</code></pre>
+<pre class="r"><code>cor_cal &lt;- function(vec1,vec2,num=10){
+  cor_vec &lt;- c()
+  for(i in 1:num){
+    cor_vec[i] &lt;- cor(vec1[,i],vec2[,i])
+  }
+  return(cor_vec)
+}</code></pre>
+<pre class="r"><code>vector_cor_df &lt;-rbind(cor_cal(vector1,vector2),cor_cal(vector1,vector3),cor_cal(vector2,vector3),
+                      cor_cal(vector1,vector4),cor_cal(vector2,vector4),cor_cal(vector3,vector4))
+rownames(vector_cor_df) &lt;- c(&quot;sub1.vs.sub2&quot;,&quot;sub1.vs.sub3&quot;,&quot;sub2.vs.sub3&quot;,
+                             &quot;sub1.vs.All&quot;,&quot;sub2.vs.All&quot;,&quot;sub3.vs.All&quot;)
+vector_cor_df</code></pre>
+<pre><code>                  [,1]      [,2]        [,3]      [,4]      [,5]        [,6]
+sub1.vs.sub2 0.9557458 0.9945449 -0.62318286 0.5705182 0.9408162 -0.08675548
+sub1.vs.sub3 0.9532094 0.9920447 -0.71658002 0.7759496 0.8543328  0.97169231
+sub2.vs.sub3 0.9561062 0.9929603  0.06104548 0.1523963 0.7973345 -0.08329334
+sub1.vs.All  0.9771237 0.9985779  0.96138510 0.9910554 0.9542326  0.99374250
+sub2.vs.All  0.9867077 0.9970324 -0.65241134 0.6224127 0.9108362 -0.09150253
+sub3.vs.All  0.9882288 0.9968009 -0.78388043 0.7931867 0.9667095  0.98791835
+                   [,7]       [,8]        [,9]      [,10]
+sub1.vs.sub2 0.08372312  0.1504371 -0.38212501  0.1805537
+sub1.vs.sub3 0.94687954 -0.8864905  0.04925108  0.4115141
+sub2.vs.sub3 0.10876652 -0.1989758  0.27724739 -0.2175643
+sub1.vs.All  0.98260262 -0.9611285 -0.80523943  0.3416541
+sub2.vs.All  0.09151675 -0.3318179 -0.01759805  0.3885958
+sub3.vs.All  0.94243796  0.8841641 -0.20340827 -0.2161648</code></pre>
+<p><img src="figure/ld_analysis.Rmd/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
