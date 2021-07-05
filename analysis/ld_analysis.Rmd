@@ -7,7 +7,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Introduction
 ```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
 set.seed(2021)
 sample_list <- read.table("/project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.1.fam",header=FALSE,sep=" ")
@@ -77,23 +76,25 @@ vector3 <- result3$vectors
 vector4 <- result4$vectors
 ```
 
-```{r}
+## The first ten eigenvalues
+```{r,echo=FALSE}
 value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
 rownames(value_df) <- c("EUR_sub1","EUR_sub2","EUR_sub3","EUR_All")
 value_df
 ```
 
-```{r}
+```{r,echo=FALSE}
 cor_cal <- function(vec1,vec2,num=10){
   cor_vec <- c()
   for(i in 1:num){
-    cor_vec[i] <- cor(vec1[,i],vec2[,i])
+    cor_vec[i] <- round(cor(vec1[,i],vec2[,i]),3)
   }
   return(cor_vec)
 }
 ```
 
-```{r}
+## Pairwise correlation of the first ten eigenvectors
+```{r,echo=FALSE}
 vector_cor_df <-rbind(cor_cal(vector1,vector2),cor_cal(vector1,vector3),cor_cal(vector2,vector3),
                       cor_cal(vector1,vector4),cor_cal(vector2,vector4),cor_cal(vector3,vector4))
 rownames(vector_cor_df) <- c("sub1.vs.sub2","sub1.vs.sub3","sub2.vs.sub3",
@@ -101,7 +102,7 @@ rownames(vector_cor_df) <- c("sub1.vs.sub2","sub1.vs.sub3","sub2.vs.sub3",
 vector_cor_df
 ```
 
-
+## Heatmap of LD matrix
 ```{r,fig.height=10, fig.width=10,echo=FALSE}
 library(plot.matrix)
 library(RColorBrewer)
