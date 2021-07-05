@@ -1,7 +1,7 @@
-name: "LD_Analysis"
+name: LD_Analysis
 output_dir: ../docs
 navbar:
-  title: "LD_Analysis"
+  title: LD_Analysis
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/sq-96/LD_Analysis
 output:
   workflowr::wflow_html:
     toc: yes
