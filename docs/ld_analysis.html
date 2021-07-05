@@ -476,16 +476,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree82cfe8c1794066155ac7486b29918bced786d10ftargetblank82cfe8ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/82cfe8c1794066155ac7486b29918bced786d10f" target="_blank">82cfe8c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree6272671d20a900c18f9f24633f36131d92ca989ftargetblank6272671a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/6272671d20a900c18f9f24633f36131d92ca989f" target="_blank">6272671</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree82cfe8c1794066155ac7486b29918bced786d10ftargetblank82cfe8ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree6272671d20a900c18f9f24633f36131d92ca989ftargetblank6272671a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/82cfe8c1794066155ac7486b29918bced786d10f" target="_blank">82cfe8c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/6272671d20a900c18f9f24633f36131d92ca989f" target="_blank">6272671</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -501,6 +501,7 @@ Untracked files:
     Untracked:  data/EUR_subpop1.txt
     Untracked:  data/EUR_subpop2.txt
     Untracked:  data/EUR_subpop3.txt
+    Untracked:  data/chr10_18681005_18770105_EUR/
     Untracked:  data/chr8_4177794_4192544_EUR/
 
 Unstaged changes:
@@ -543,6 +544,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/LD_Analysis/blob/6272671d20a900c18f9f24633f36131d92ca989f/analysis/ld_analysis.Rmd" target="_blank">6272671</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/LD_Analysis/457808cbae2c78e4c6771ab47272ffae558d61cd/docs/ld_analysis.html" target="_blank">457808c</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -931,6 +966,28 @@ sq-96
 </table>
 </div>
 </div>
+</div>
+<div id="the-first-ten-eigenvalues-1" class="section level2">
+<h2>The first ten eigenvalues</h2>
+<pre><code>           [,1]   [,2]   [,3]   [,4]   [,5]   [,6]   [,7]  [,8]  [,9] [,10]
+EUR_sub1 64.567 41.246 27.939 22.025 16.730 12.993 10.882 8.684 8.098 5.896
+EUR_sub2 58.766 44.374 28.344 19.114 17.447 15.394 10.693 9.354 8.029 6.484
+EUR_sub3 63.827 44.576 28.343 23.739 16.849 15.974  9.240 8.869 8.085 5.096
+EUR_All  61.384 42.751 28.386 21.892 16.766 15.061 10.140 9.074 8.152 5.691</code></pre>
+</div>
+<div id="pairwise-correlation-of-the-first-ten-eigenvectors-1" class="section level2">
+<h2>Pairwise correlation of the first ten eigenvectors</h2>
+<pre><code>              [,1]  [,2]   [,3]   [,4]   [,5]   [,6]   [,7]  [,8]  [,9]  [,10]
+sub1.vs.sub2 0.974 0.931 -0.969 -0.954 -0.966 -0.948  0.932 0.950 0.920 -0.830
+sub1.vs.sub3 0.983 0.979  0.982  0.975  0.904  0.946 -0.882 0.809 0.752  0.584
+sub2.vs.sub3 0.978 0.965 -0.959 -0.937 -0.849 -0.876 -0.802 0.765 0.771 -0.650
+sub1.vs.All  0.995 0.982  0.992 -0.989  0.990  0.989  0.976 0.988 0.976  0.941
+sub2.vs.All  0.990 0.981 -0.990  0.982 -0.983 -0.977  0.968 0.967 0.967 -0.916
+sub3.vs.All  0.993 0.994  0.982 -0.978  0.919  0.944 -0.913 0.846 0.830  0.766</code></pre>
+</div>
+<div id="heatmap-of-ld-matrix-1" class="section level2">
+<h2>Heatmap of LD matrix</h2>
+<p><img src="figure/ld_analysis.Rmd/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
