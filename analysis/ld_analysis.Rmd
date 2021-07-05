@@ -78,8 +78,29 @@ vector4 <- result4$vectors
 ```
 
 ```{r}
-rbind(value1[1:20],value2[1:20],value3[1:20],value4[1:20])
+value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
+rownames(value_df) <- c("EUR_sub1","EUR_sub2","EUR_sub3","EUR_All")
+value_df
 ```
+
+```{r}
+cor_cal <- function(vec1,vec2,num=10){
+  cor_vec <- c()
+  for(i in 1:num){
+    cor_vec[i] <- cor(vec1[,i],vec2[,i])
+  }
+  return(cor_vec)
+}
+```
+
+```{r}
+vector_cor_df <-rbind(cor_cal(vector1,vector2),cor_cal(vector1,vector3),cor_cal(vector2,vector3),
+                      cor_cal(vector1,vector4),cor_cal(vector2,vector4),cor_cal(vector3,vector4))
+rownames(vector_cor_df) <- c("sub1.vs.sub2","sub1.vs.sub3","sub2.vs.sub3",
+                             "sub1.vs.All","sub2.vs.All","sub3.vs.All")
+vector_cor_df
+```
+
 
 ```{r,fig.height=10, fig.width=10,echo=FALSE}
 library(plot.matrix)
