@@ -8,17 +8,7 @@ editor_options:
 ---
 
 ## Introduction
-
----
-title: "LD Analysis"
-author: "sq-96"
-date: "2021-07-05"
-output: workflowr::wflow_html
-editor_options:
-  chunk_output_type: console
----
-
-```{r,eval=FALSE}
+```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
 set.seed(2021)
 sample_list <- read.table("/project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.1.fam",header=FALSE,sep=" ")
 sample_list <- sample_list[sample(1:489,480),c("V1","V2")]
@@ -42,7 +32,7 @@ system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_
 system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR")
 ```
 
-```{r}
+```{r,message=FALSE,results=FALSE,echo=FALSE}
 ld1 <- read.table('./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.ld',header=FALSE)
 snp_list1 <- read.table('./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.snplist',header=FALSE)
 colnames(ld1) <- snp_list1$V1
@@ -64,7 +54,7 @@ colnames(ld4) <- snp_list4$V1
 rownames(ld4) <- snp_list4$V1
 ```
 
-```{r}
+```{r,message=FALSE,results=FALSE,echo=FALSE}
 index <- Reduce(intersect, list(snp_list1$V1,snp_list2$V1,snp_list3$V1,snp_list4$V1))
 ld1 <- ld1[index,index]
 ld2 <- ld2[index,index]
