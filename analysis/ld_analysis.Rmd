@@ -1,0 +1,85 @@
+---
+title: "ld_analysis"
+output: html_document
+---
+
+```{r,eval=FALSE}
+set.seed(2021)
+sample_list <- read.table("/project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.1.fam",header=FALSE,sep=" ")
+sample_list <- sample_list[sample(1:489,480),c("V1","V2")]
+sample_list_split <- split(sample_list, sample(rep(1:4,times=c(120,120,120,120))))
+subsample1 <- sample_list_split$`1`
+subsample2 <- sample_list_split$`2`
+subsample3 <- sample_list_split$`3`
+subsample4 <- sample_list_split$`4`
+write.table(subsample1,file = "../data/EUR_subpop1.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALSE)
+write.table(subsample2,file = "../data/EUR_subpop2.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALSE)
+write.table(subsample3,file = "../data/EUR_subpop3.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALSE)
+write.table(subsample4,file = "../data/EUR_subpop4.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALSE)
+```
+
+```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./EUR_subpop1.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1")
+
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./EUR_subpop2.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop2")
+
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./EUR_subpop3.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop3")
+
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./EUR_subpop4.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop4")
+```
+
+```{r}
+ld1 <- read.table('~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.ld',header=FALSE)
+snp_list1 <- read.table('~/scratch-midway2/LD_Analysis/data//chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.snplist',header=FALSE)
+colnames(ld1) <- snp_list1$V1
+rownames(ld1) <- snp_list1$V1
+
+ld2 <- read.table('~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop2.ld',header=FALSE)
+snp_list2 <- read.table('~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop2.snplist',header=FALSE)
+colnames(ld2) <- snp_list2$V1
+rownames(ld2) <- snp_list2$V1
+
+ld3 <- read.table('~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop3.ld',header=FALSE)
+snp_list3 <- read.table('~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop3.snplist',header=FALSE)
+colnames(ld3) <- snp_list3$V1
+rownames(ld3) <- snp_list3$V1
+
+ld4 <- read.table('~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop4.ld',header=FALSE)
+snp_list4 <- read.table('~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop4.snplist',header=FALSE)
+colnames(ld4) <- snp_list4$V1
+rownames(ld4) <- snp_list4$V1
+```
+
+```{r}
+index <- Reduce(intersect, list(snp_list1$V1,snp_list2$V1,snp_list3$V1,snp_list4$V1))
+ld1 <- ld1[index,index]
+ld2 <- ld2[index,index]
+ld3 <- ld3[index,index]
+ld4 <- ld4[index,index]
+
+result1 <- eigen(ld1)
+result2 <- eigen(ld2)
+result3 <- eigen(ld3)
+result4 <- eigen(ld4)
+
+value1 <- round(result1$values,3)
+value2 <- round(result2$values,3)
+value3 <- round(result3$values,3)
+value4 <- round(result4$values,3)
+
+vector1 <- result1$vectors
+vector2 <- result2$vectors
+vector3 <- result3$vectors
+vector4 <- result4$vectors
+```
+
+```{r,fig.height=10, fig.width=10}
+
+library(plot.matrix)
+par(mar=c(5, 4, 4, 2),mfrow=c(2,2))
+plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='', col=colorspace::diverge_hsv)
+plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='', col=colorspace::diverge_hsv)
+plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', col=colorspace::diverge_hsv)
+plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', col=colorspace::diverge_hsv)
+```
+
