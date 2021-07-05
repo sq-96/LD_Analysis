@@ -13,7 +13,7 @@
 
 <meta name="date" content="2021-07-05" />
 
-<title>LD Analysis</title>
+<title>ld_analysis</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -358,7 +358,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">LD Analysis</h1>
+<h1 class="title toc-ignore">ld_analysis</h1>
 <h4 class="author">sq-96</h4>
 <h4 class="date">2021-07-05</h4>
 
@@ -476,16 +476,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreeec874a307b616a7a75a1ec004e7c4aa00387a2e4targetblankec874a3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/ec874a307b616a7a75a1ec004e7c4aa00387a2e4" target="_blank">ec874a3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreef66f5092b6dca14e00f74fc26f7c0ac9842b069ctargetblankf66f509a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/f66f5092b6dca14e00f74fc26f7c0ac9842b069c" target="_blank">f66f509</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreeec874a307b616a7a75a1ec004e7c4aa00387a2e4targetblankec874a3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreef66f5092b6dca14e00f74fc26f7c0ac9842b069ctargetblankf66f509a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/ec874a307b616a7a75a1ec004e7c4aa00387a2e4" target="_blank">ec874a3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/f66f5092b6dca14e00f74fc26f7c0ac9842b069c" target="_blank">f66f509</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -543,6 +543,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/LD_Analysis/blob/f66f5092b6dca14e00f74fc26f7c0ac9842b069c/analysis/ld_analysis.Rmd" target="_blank">f66f509</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/LD_Analysis/b538793c3e194b473d0ae65ba0af770f80bcaa91/docs/ld_analysis.html" target="_blank">b538793</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -637,56 +671,6 @@ Publish the initial files for myproject
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<pre class="r"><code>set.seed(2021)
-sample_list &lt;- read.table(&quot;/project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.1.fam&quot;,header=FALSE,sep=&quot; &quot;)
-sample_list &lt;- sample_list[sample(1:489,480),c(&quot;V1&quot;,&quot;V2&quot;)]
-sample_list_split &lt;- split(sample_list, sample(rep(1:3,times=c(160,160,160))))
-subsample1 &lt;- sample_list_split$`1`
-subsample2 &lt;- sample_list_split$`2`
-subsample3 &lt;- sample_list_split$`3`
-
-write.table(subsample1,file = &quot;./data/EUR_subpop1.txt&quot;,sep=&#39;\t&#39;,quote = FALSE,col.names = FALSE,row.names = FALSE)
-write.table(subsample2,file = &quot;./data/EUR_subpop2.txt&quot;,sep=&#39;\t&#39;,quote = FALSE,col.names = FALSE,row.names = FALSE)
-write.table(subsample3,file = &quot;./data/EUR_subpop3.txt&quot;,sep=&#39;\t&#39;,quote = FALSE,col.names = FALSE,row.names = FALSE)</code></pre>
-<pre class="r"><code>ld1 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.ld&#39;,header=FALSE)
-snp_list1 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.snplist&#39;,header=FALSE)
-colnames(ld1) &lt;- snp_list1$V1
-rownames(ld1) &lt;- snp_list1$V1
-
-ld2 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop2.ld&#39;,header=FALSE)
-snp_list2 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop2.snplist&#39;,header=FALSE)
-colnames(ld2) &lt;- snp_list2$V1
-rownames(ld2) &lt;- snp_list2$V1
-
-ld3 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop3.ld&#39;,header=FALSE)
-snp_list3 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop3.snplist&#39;,header=FALSE)
-colnames(ld3) &lt;- snp_list3$V1
-rownames(ld3) &lt;- snp_list3$V1
-
-ld4 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR.ld&#39;,header=FALSE)
-snp_list4 &lt;- read.table(&#39;./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR.snplist&#39;,header=FALSE)
-colnames(ld4) &lt;- snp_list4$V1
-rownames(ld4) &lt;- snp_list4$V1</code></pre>
-<pre class="r"><code>index &lt;- Reduce(intersect, list(snp_list1$V1,snp_list2$V1,snp_list3$V1,snp_list4$V1))
-ld1 &lt;- ld1[index,index]
-ld2 &lt;- ld2[index,index]
-ld3 &lt;- ld3[index,index]
-ld4 &lt;- ld4[index,index]
-
-result1 &lt;- eigen(ld1)
-result2 &lt;- eigen(ld2)
-result3 &lt;- eigen(ld3)
-result4 &lt;- eigen(ld4)
-
-value1 &lt;- round(result1$values,3)
-value2 &lt;- round(result2$values,3)
-value3 &lt;- round(result3$values,3)
-value4 &lt;- round(result4$values,3)
-
-vector1 &lt;- result1$vectors
-vector2 &lt;- result2$vectors
-vector3 &lt;- result3$vectors
-vector4 &lt;- result4$vectors</code></pre>
 <pre class="r"><code>library(plot.matrix)
 par(mar=c(5, 4, 4, 2),mfrow=c(2,2))
 plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab=&#39;&#39;, ylab=&#39;&#39;, main=&#39;&#39;, col=colorspace::diverge_hsv)
@@ -716,6 +700,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/LD_Analysis/blob/b538793c3e194b473d0ae65ba0af770f80bcaa91/docs/figure/ld_analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">b538793</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/LD_Analysis/blob/81812fd4ef3a3dc95fa5053767af5ac8320f1392/docs/figure/ld_analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">81812fd</a>
