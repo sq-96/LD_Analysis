@@ -196,10 +196,10 @@ vector_cor_df
 ```
 
 ## Heatmap of LD matrix
-```{r,fig.height=10, fig.width=10,echo=FALSE}
+```{r,fig.height=15, fig.width=15,echo=FALSE}
 library(plot.matrix)
 library(RColorBrewer)
-par(mar=c(10, 8, 8, 4),mfrow=c(2,2))
+par(mar=c(5, 4, 4, 2),mfrow=c(2,2))
 plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
 plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
 plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub3', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
