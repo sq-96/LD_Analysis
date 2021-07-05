@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="sq-96" />
 
+<meta name="date" content="2021-07-05" />
 
-<title>ld_analysis</title>
+<title>first-analysis</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -356,7 +358,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">ld_analysis</h1>
+<h1 class="title toc-ignore">first-analysis</h1>
+<h4 class="author">sq-96</h4>
+<h4 class="date">2021-07-05</h4>
 
 </div>
 
@@ -590,7 +594,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/ld_analysis.Rmd</code>) and HTML (<code>docs/ld_analysis.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/first-analysis.Rmd</code>) and HTML (<code>docs/first-analysis.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -616,27 +620,10 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/LD_Analysis/81812fd4ef3a3dc95fa5053767af5ac8320f1392/docs/ld_analysis.html" target="_blank">81812fd</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-07-05
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/sq-96/LD_Analysis/blob/3e38b1c5dbfe4f9e075bd68aa2ffce16ab996588/analysis/ld_analysis.Rmd" target="_blank">3e38b1c</a>
+<a href="https://github.com/sq-96/LD_Analysis/blob/82c60e9bffb6b38783075556e2c0813743bc3d45/analysis/first-analysis.Rmd" target="_blank">82c60e9</a>
 </td>
 <td>
 sq-96
@@ -655,18 +642,6 @@ Publish the initial files for myproject
 </div>
 </div>
 </div>
-<pre class="r"><code>set.seed(2021)
-sample_list &lt;- read.table(&quot;/project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.1.fam&quot;,header=FALSE,sep=&quot; &quot;)
-sample_list &lt;- sample_list[sample(1:489,480),c(&quot;V1&quot;,&quot;V2&quot;)]
-sample_list_split &lt;- split(sample_list, sample(rep(1:4,times=c(120,120,120,120))))
-subsample1 &lt;- sample_list_split$`1`
-subsample2 &lt;- sample_list_split$`2`
-subsample3 &lt;- sample_list_split$`3`
-subsample4 &lt;- sample_list_split$`4`
-write.table(subsample1,file = &quot;../data/EUR_subpop1.txt&quot;,sep=&#39;\t&#39;,quote = FALSE,col.names = FALSE,row.names = FALSE)
-write.table(subsample2,file = &quot;../data/EUR_subpop2.txt&quot;,sep=&#39;\t&#39;,quote = FALSE,col.names = FALSE,row.names = FALSE)
-write.table(subsample3,file = &quot;../data/EUR_subpop3.txt&quot;,sep=&#39;\t&#39;,quote = FALSE,col.names = FALSE,row.names = FALSE)
-write.table(subsample4,file = &quot;../data/EUR_subpop4.txt&quot;,sep=&#39;\t&#39;,quote = FALSE,col.names = FALSE,row.names = FALSE)</code></pre>
 <pre class="r"><code>ld1 &lt;- read.table(&#39;~/scratch-midway2/LD_Analysis/data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.ld&#39;,header=FALSE)
 snp_list1 &lt;- read.table(&#39;~/scratch-midway2/LD_Analysis/data//chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1.snplist&#39;,header=FALSE)
 colnames(ld1) &lt;- snp_list1$V1
@@ -712,44 +687,7 @@ plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab=&#39;&#39;, ylab=&#39;&#
 plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab=&#39;&#39;, ylab=&#39;&#39;, main=&#39;&#39;, col=colorspace::diverge_hsv)
 plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab=&#39;&#39;, ylab=&#39;&#39;, col=colorspace::diverge_hsv)
 plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab=&#39;&#39;, ylab=&#39;&#39;, col=colorspace::diverge_hsv)</code></pre>
-<p><img src="figure/ld_analysis.Rmd/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
-Past versions of unnamed-chunk-5-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-5-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/LD_Analysis/blob/81812fd4ef3a3dc95fa5053767af5ac8320f1392/docs/figure/ld_analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">81812fd</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-07-05
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/first-analysis.Rmd/unnamed-chunk-3-1.png" width="960" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
