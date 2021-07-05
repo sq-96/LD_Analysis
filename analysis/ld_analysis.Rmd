@@ -77,14 +77,14 @@ vector3 <- result3$vectors
 vector4 <- result4$vectors
 ```
 
-```{r,fig.height=10, fig.width=10}
+```{r,fig.height=10, fig.width=10,echo=FALSE}
 library(plot.matrix)
 library(RColorBrewer)
 par(mar=c(5, 4, 4, 2),mfrow=c(2,2))
-plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=brewer.pal(5,name = "Blues"),spacing.key=c(2,2,1))
-plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=brewer.pal(5,name = "Blues"),spacing.key=c(2,2,1))
-plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub3', col=brewer.pal(5,name = "Blues"),spacing.key=c(2,2,1))
-plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All', col=brewer.pal(5,name = "Blues"),spacing.key=c(2,2,1))
+plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub3', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
 ```
 
 
