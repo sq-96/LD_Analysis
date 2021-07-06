@@ -76,6 +76,7 @@ vector3 <- result3$vectors
 vector4 <- result4$vectors
 ```
 
+# chr8 4177794-4192544
 ## The first ten eigenvalues
 ```{r,echo=FALSE}
 value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
@@ -93,7 +94,7 @@ cor_cal <- function(vec1,vec2,num=10){
 }
 ```
 
-## Pairwise correlation of the first ten eigenvectors
+## Pairwise correlation of the ith eigenvectors
 ```{r,echo=FALSE}
 vector_cor_df <-rbind(cor_cal(vector1,vector2),cor_cal(vector1,vector3),cor_cal(vector2,vector3),
                       cor_cal(vector1,vector4),cor_cal(vector2,vector4),cor_cal(vector3,vector4))
@@ -169,6 +170,7 @@ vector3 <- result3$vectors
 vector4 <- result4$vectors
 ```
 
+# chr10 18681005-18770105
 ## The first ten eigenvalues
 ```{r,echo=FALSE}
 value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
@@ -186,7 +188,7 @@ cor_cal <- function(vec1,vec2,num=10){
 }
 ```
 
-## Pairwise correlation of the first ten eigenvectors
+## Pairwise correlation of the ith eigenvectors
 ```{r,echo=FALSE}
 vector_cor_df <-rbind(cor_cal(vector1,vector2),cor_cal(vector1,vector3),cor_cal(vector2,vector3),
                       cor_cal(vector1,vector4),cor_cal(vector2,vector4),cor_cal(vector3,vector4))
@@ -206,3 +208,95 @@ plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_s
 #plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
 ```
 
+```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop1.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop1")
+
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop2.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop2")
+
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop3.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop3")
+
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR")
+```
+
+```{r,message=FALSE,results=FALSE,echo=FALSE}
+ld1 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop1.ld',header=FALSE)
+snp_list1 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop1.snplist',header=FALSE)
+colnames(ld1) <- snp_list1$V1
+rownames(ld1) <- snp_list1$V1
+
+ld2 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop2.ld',header=FALSE)
+snp_list2 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop2.snplist',header=FALSE)
+colnames(ld2) <- snp_list2$V1
+rownames(ld2) <- snp_list2$V1
+
+ld3 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop3.ld',header=FALSE)
+snp_list3 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop3.snplist',header=FALSE)
+colnames(ld3) <- snp_list3$V1
+rownames(ld3) <- snp_list3$V1
+
+ld4 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR.ld',header=FALSE)
+snp_list4 <- read.table('./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR.snplist',header=FALSE)
+colnames(ld4) <- snp_list4$V1
+rownames(ld4) <- snp_list4$V1
+```
+
+```{r,message=FALSE,results=FALSE,echo=FALSE}
+index <- Reduce(intersect, list(snp_list1$V1,snp_list2$V1,snp_list3$V1,snp_list4$V1))
+ld1 <- ld1[index,index]
+ld2 <- ld2[index,index]
+ld3 <- ld3[index,index]
+ld4 <- ld4[index,index]
+
+result1 <- eigen(ld1)
+result2 <- eigen(ld2)
+result3 <- eigen(ld3)
+result4 <- eigen(ld4)
+
+value1 <- round(result1$values,3)
+value2 <- round(result2$values,3)
+value3 <- round(result3$values,3)
+value4 <- round(result4$values,3)
+
+vector1 <- result1$vectors
+vector2 <- result2$vectors
+vector3 <- result3$vectors
+vector4 <- result4$vectors
+```
+
+# chr15 91416560-91429040
+## The first ten eigenvalues
+```{r,echo=FALSE}
+value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
+rownames(value_df) <- c("EUR_sub1","EUR_sub2","EUR_sub3","EUR_All")
+value_df
+```
+
+```{r,echo=FALSE}
+cor_cal <- function(vec1,vec2,num=10){
+  cor_vec <- c()
+  for(i in 1:num){
+    cor_vec[i] <- round(cor(vec1[,i],vec2[,i]),3)
+  }
+  return(cor_vec)
+}
+```
+
+## Pairwise correlation of the ith eigenvectors
+```{r,echo=FALSE}
+vector_cor_df <-rbind(cor_cal(vector1,vector2),cor_cal(vector1,vector3),cor_cal(vector2,vector3),
+                      cor_cal(vector1,vector4),cor_cal(vector2,vector4),cor_cal(vector3,vector4))
+rownames(vector_cor_df) <- c("sub1.vs.sub2","sub1.vs.sub3","sub2.vs.sub3",
+                             "sub1.vs.All","sub2.vs.All","sub3.vs.All")
+vector_cor_df
+```
+
+## Heatmap of LD matrix
+```{r,fig.height=15, fig.width=15,echo=FALSE}
+library(plot.matrix)
+library(RColorBrewer)
+par(mar=c(5, 4, 4, 2),mfrow=c(2,2))
+plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub3', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+```
