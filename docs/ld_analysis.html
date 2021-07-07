@@ -385,7 +385,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-07-05
+<strong>Last updated:</strong> 2021-07-07
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -476,16 +476,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree64f9844bcfb1e6871b2e8d96ea3beacdd903d705targetblank64f9844a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/64f9844bcfb1e6871b2e8d96ea3beacdd903d705" target="_blank">64f9844</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreef7c4b4715305c2311d0faa2bda9cd02e5e66a381targetblankf7c4b47a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/LD_Analysis/tree/f7c4b4715305c2311d0faa2bda9cd02e5e66a381" target="_blank">f7c4b47</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistree64f9844bcfb1e6871b2e8d96ea3beacdd903d705targetblank64f9844a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96LDAnalysistreef7c4b4715305c2311d0faa2bda9cd02e5e66a381targetblankf7c4b47a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/64f9844bcfb1e6871b2e8d96ea3beacdd903d705" target="_blank">64f9844</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/LD_Analysis/tree/f7c4b4715305c2311d0faa2bda9cd02e5e66a381" target="_blank">f7c4b47</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -545,6 +545,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/LD_Analysis/blob/f7c4b4715305c2311d0faa2bda9cd02e5e66a381/analysis/ld_analysis.Rmd" target="_blank">f7c4b47</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-07
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/LD_Analysis/1569358dc335b14c0ad301fb6ab9178228fb7afc/docs/ld_analysis.html" target="_blank">1569358</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-07-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1045,18 +1079,26 @@ Publish the initial files for myproject
 </div>
 </div>
 </div>
-<div id="chr8-4177794-4192544" class="section level1">
-<h1>chr8 4177794-4192544</h1>
-<div id="the-first-ten-eigenvalues" class="section level2">
-<h2>The first ten eigenvalues</h2>
+<div id="objective" class="section level3">
+<h3>Objective</h3>
+<p>Comparing eigenvalues and eigenvectors of LD matrices calcualted with different subsamples.</p>
+</div>
+<div id="method" class="section level3">
+<h3>Method</h3>
+<p>Data is from 1000 Genome EUR ancestry (~500 individuals). Samples are randomly splitted into 3 subsets, each has 160 individuals. Using PLINL to alculate LD matrices with variants (MAF &gt; 0.05) in three SCZ loci.</p>
+</div>
+<div id="chr8-4177794-4192544" class="section level2">
+<h2>chr8 4177794-4192544</h2>
+<div id="the-first-ten-eigenvalues" class="section level3">
+<h3>The first ten eigenvalues</h3>
 <pre><code>           [,1]   [,2]   [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]
 EUR_sub1 29.065 18.070 10.046 9.695 8.266 3.396 2.458 1.798 1.714 1.609
 EUR_sub2 31.328 18.959  9.930 8.578 7.777 2.856 2.765 1.860 1.630 1.561
 EUR_sub3 32.999 17.835 10.803 9.199 7.103 2.979 2.291 1.768 1.573 1.536
 EUR_All  31.035 18.421  9.739 9.504 7.758 3.028 2.508 1.734 1.673 1.487</code></pre>
 </div>
-<div id="pairwise-correlation-of-the-ith-eigenvectors" class="section level2">
-<h2>Pairwise correlation of the ith eigenvectors</h2>
+<div id="pairwise-correlation-of-the-ith-eigenvectors" class="section level3">
+<h3>Pairwise correlation of the ith eigenvectors</h3>
 <pre><code>              [,1]  [,2]   [,3]  [,4]  [,5]   [,6]  [,7]   [,8]   [,9]  [,10]
 sub1.vs.sub2 0.956 0.995 -0.623 0.571 0.941 -0.087 0.084  0.150 -0.382  0.181
 sub1.vs.sub3 0.953 0.992 -0.717 0.776 0.854  0.972 0.947 -0.886  0.049  0.412
@@ -1065,8 +1107,8 @@ sub1.vs.All  0.977 0.999  0.961 0.991 0.954  0.994 0.983 -0.961 -0.805  0.342
 sub2.vs.All  0.987 0.997 -0.652 0.622 0.911 -0.092 0.092 -0.332 -0.018  0.389
 sub3.vs.All  0.988 0.997 -0.784 0.793 0.967  0.988 0.942  0.884 -0.203 -0.216</code></pre>
 </div>
-<div id="heatmap-of-ld-matrix" class="section level2">
-<h2>Heatmap of LD matrix</h2>
+<div id="heatmap-of-ld-matrix" class="section level3">
+<h3>Heatmap of LD matrix</h3>
 <p><img src="figure/ld_analysis.Rmd/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
@@ -1107,18 +1149,18 @@ sq-96
 </div>
 </div>
 </div>
-<div id="chr10-18681005-18770105" class="section level1">
-<h1>chr10 18681005-18770105</h1>
-<div id="the-first-ten-eigenvalues-1" class="section level2">
-<h2>The first ten eigenvalues</h2>
+<div id="chr10-18681005-18770105" class="section level2">
+<h2>chr10 18681005-18770105</h2>
+<div id="the-first-ten-eigenvalues-1" class="section level3">
+<h3>The first ten eigenvalues</h3>
 <pre><code>           [,1]   [,2]   [,3]   [,4]   [,5]   [,6]   [,7]  [,8]  [,9] [,10]
 EUR_sub1 64.567 41.246 27.939 22.025 16.730 12.993 10.882 8.684 8.098 5.896
 EUR_sub2 58.766 44.374 28.344 19.114 17.447 15.394 10.693 9.354 8.029 6.484
 EUR_sub3 63.827 44.576 28.343 23.739 16.849 15.974  9.240 8.869 8.085 5.096
 EUR_All  61.384 42.751 28.386 21.892 16.766 15.061 10.140 9.074 8.152 5.691</code></pre>
 </div>
-<div id="pairwise-correlation-of-the-ith-eigenvectors-1" class="section level2">
-<h2>Pairwise correlation of the ith eigenvectors</h2>
+<div id="pairwise-correlation-of-the-ith-eigenvectors-1" class="section level3">
+<h3>Pairwise correlation of the ith eigenvectors</h3>
 <pre><code>              [,1]  [,2]   [,3]   [,4]   [,5]   [,6]   [,7]  [,8]  [,9]  [,10]
 sub1.vs.sub2 0.974 0.931 -0.969 -0.954 -0.966 -0.948  0.932 0.950 0.920 -0.830
 sub1.vs.sub3 0.983 0.979  0.982  0.975  0.904  0.946 -0.882 0.809 0.752  0.584
@@ -1127,15 +1169,39 @@ sub1.vs.All  0.995 0.982  0.992 -0.989  0.990  0.989  0.976 0.988 0.976  0.941
 sub2.vs.All  0.990 0.981 -0.990  0.982 -0.983 -0.977  0.968 0.967 0.967 -0.916
 sub3.vs.All  0.993 0.994  0.982 -0.978  0.919  0.944 -0.913 0.846 0.830  0.766</code></pre>
 </div>
-<div id="heatmap-of-ld-matrix-1" class="section level2">
-<h2>Heatmap of LD matrix</h2>
-<p><img src="figure/ld_analysis.Rmd/unnamed-chunk-15-1.png" width="1440" style="display: block; margin: auto;" /></p>
+<div id="heatmap-of-ld-matrix-1" class="section level3">
+<h3>Heatmap of LD matrix</h3>
+</div>
+</div>
+<div id="chr15-91416560-91429040" class="section level2">
+<h2>chr15 91416560-91429040</h2>
+<div id="the-first-ten-eigenvalues-2" class="section level3">
+<h3>The first ten eigenvalues</h3>
+<pre><code>           [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]
+EUR_sub1 12.358 9.500 3.138 0.987 0.879 0.344 0.229 0.136 0.133 0.088
+EUR_sub2 12.630 9.654 3.083 0.982 0.828 0.325 0.177 0.106 0.097 0.029
+EUR_sub3 11.828 9.181 3.653 1.155 0.958 0.361 0.212 0.175 0.154 0.134
+EUR_All  12.232 9.470 3.301 0.978 0.945 0.350 0.176 0.127 0.101 0.086</code></pre>
+</div>
+<div id="pairwise-correlation-of-the-ith-eigenvectors-2" class="section level3">
+<h3>Pairwise correlation of the ith eigenvectors</h3>
+<pre><code>              [,1]  [,2]  [,3]   [,4]   [,5]   [,6]   [,7]   [,8]   [,9] [,10]
+sub1.vs.sub2 0.994 0.999 0.997 -0.953  0.948  0.972 -0.717 -0.030 -0.025 0.030
+sub1.vs.sub3 0.938 0.998 0.994 -0.205 -0.246 -0.908 -0.270  0.334  0.241 0.148
+sub2.vs.sub3 0.931 0.999 0.997 -0.091  0.059 -0.929  0.124 -0.512 -0.699 0.129
+sub1.vs.All  0.994 0.999 0.998 -0.995 -0.993 -0.975  0.912  0.135 -0.218 0.055
+sub2.vs.All  0.994 1.000 0.999  0.976 -0.960 -0.984 -0.922  0.891 -0.884 0.047
+sub3.vs.All  0.964 0.999 0.998  0.121  0.162  0.974 -0.258 -0.295  0.775 0.200</code></pre>
+</div>
+<div id="heatmap-of-ld-matrix-2" class="section level3">
+<h3>Heatmap of LD matrix</h3>
+<p><img src="figure/ld_analysis.Rmd/unnamed-chunk-22-1.png" width="1440" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
-Past versions of unnamed-chunk-15-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-1">
+Past versions of unnamed-chunk-22-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-15-1" class="collapse">
+<div id="fig-unnamed-chunk-22-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -1154,40 +1220,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/sq-96/LD_Analysis/blob/d4588ecc7f1fa0683afe8e44583ccbc54a099dba/docs/figure/ld_analysis.Rmd/unnamed-chunk-15-1.png" target="_blank">d4588ec</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-07-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/LD_Analysis/blob/9745cc66839a315a3895eb0eff72e114b21304b2/docs/figure/ld_analysis.Rmd/unnamed-chunk-15-1.png" target="_blank">9745cc6</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-07-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/LD_Analysis/blob/b5b98f17491f57c98e9b695bf29800b8bb816075/docs/figure/ld_analysis.Rmd/unnamed-chunk-15-1.png" target="_blank">b5b98f1</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-07-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/LD_Analysis/blob/2fd6c2ff865a293da8fd0c2fb92461f0767d14a5/docs/figure/ld_analysis.Rmd/unnamed-chunk-15-1.png" target="_blank">2fd6c2f</a>
+<a href="https://github.com/sq-96/LD_Analysis/blob/1569358dc335b14c0ad301fb6ab9178228fb7afc/docs/figure/ld_analysis.Rmd/unnamed-chunk-22-1.png" target="_blank">1569358</a>
 </td>
 <td>
 sq-96
@@ -1200,31 +1233,6 @@ sq-96
 </table>
 </div>
 </div>
-</div>
-</div>
-<div id="chr15-91416560-91429040" class="section level1">
-<h1>chr15 91416560-91429040</h1>
-<div id="the-first-ten-eigenvalues-2" class="section level2">
-<h2>The first ten eigenvalues</h2>
-<pre><code>           [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]
-EUR_sub1 12.358 9.500 3.138 0.987 0.879 0.344 0.229 0.136 0.133 0.088
-EUR_sub2 12.630 9.654 3.083 0.982 0.828 0.325 0.177 0.106 0.097 0.029
-EUR_sub3 11.828 9.181 3.653 1.155 0.958 0.361 0.212 0.175 0.154 0.134
-EUR_All  12.232 9.470 3.301 0.978 0.945 0.350 0.176 0.127 0.101 0.086</code></pre>
-</div>
-<div id="pairwise-correlation-of-the-ith-eigenvectors-2" class="section level2">
-<h2>Pairwise correlation of the ith eigenvectors</h2>
-<pre><code>              [,1]  [,2]  [,3]   [,4]   [,5]   [,6]   [,7]   [,8]   [,9] [,10]
-sub1.vs.sub2 0.994 0.999 0.997 -0.953  0.948  0.972 -0.717 -0.030 -0.025 0.030
-sub1.vs.sub3 0.938 0.998 0.994 -0.205 -0.246 -0.908 -0.270  0.334  0.241 0.148
-sub2.vs.sub3 0.931 0.999 0.997 -0.091  0.059 -0.929  0.124 -0.512 -0.699 0.129
-sub1.vs.All  0.994 0.999 0.998 -0.995 -0.993 -0.975  0.912  0.135 -0.218 0.055
-sub2.vs.All  0.994 1.000 0.999  0.976 -0.960 -0.984 -0.922  0.891 -0.884 0.047
-sub3.vs.All  0.964 0.999 0.998  0.121  0.162  0.974 -0.258 -0.295  0.775 0.200</code></pre>
-</div>
-<div id="heatmap-of-ld-matrix-2" class="section level2">
-<h2>Heatmap of LD matrix</h2>
-<p><img src="figure/ld_analysis.Rmd/unnamed-chunk-22-1.png" width="1440" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
