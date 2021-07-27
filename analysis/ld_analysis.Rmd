@@ -13,8 +13,8 @@ Comparing eigenvalues and eigenvectors of LD matrices calcualted with different 
 ## Method
 Data is from 1000 Genome EUR ancestry (~500 individuals). Samples are randomly splitted into 3 subsets, each has 160 individuals. Using PLINL to alculate LD matrices with variants (MAF > 0.05) in three SCZ loci. 
 
-## Resul
-```{r}
+## Result
+```{r,echo=FALSE}
 library(plot.matrix)
 library(RColorBrewer)
 ```
@@ -33,7 +33,7 @@ write.table(subsample2,file = "./data/EUR_subpop2.txt",sep='\t',quote = FALSE,co
 write.table(subsample3,file = "./data/EUR_subpop3.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALS```
 ```
 
-```{r}
+```{r,echo=FALSE}
 cor_cal <- function(vec1,vec2,num=10){
   cor_vec <- c()
   for(i in 1:num){
@@ -127,7 +127,7 @@ vector_cor_df
 ```
 
 #### Pairwise correlation between two sets of eigenvectors
-```{r}
+```{r,fig.height=10, fig.width=10,echo=FALSE}
 matrix_cor_df <- cor_matrix_cal(vector1,vector3)
 par(mar=c(5, 4, 4, 4))
 plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
@@ -136,10 +136,10 @@ plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', m
 #### Heatmap of LD matrix
 ```{r,fig.height=15, fig.width=15,echo=FALSE}
 par(mar=c(5, 4, 4, 2),mfrow=c(2,2))
-plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
-plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
-plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub3', col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
-plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All',  col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
+plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=rev(brewer.pal(8,name = "RdYlBu")),spacing.key=c(2,2,1))
+plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=rev(brewer.pal(8,name = "RdYlBu")),spacing.key=c(2,2,1))
+plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub3', col=rev(brewer.pal(8,name = "RdYlBu")),spacing.key=c(2,2,1))
+plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All',  col=rev(brewer.pal(8,name = "RdYlBu")),spacing.key=c(2,2,1))
 ```
 
 ### chr8 4177794-4192544
@@ -215,7 +215,7 @@ vector_cor_df
 ```
 
 #### Pairwise correlation between two sets of eigenvectors
-```{r}
+```{r,fig.height=10, fig.width=10,echo=FALSE}
 matrix_cor_df <- cor_matrix_cal(vector1[,1:30],vector2[,1:30])
 par(mar=c(5, 4, 4, 4))
 plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
@@ -303,7 +303,7 @@ vector_cor_df
 ```
 
 #### Pairwise correlation between two sets of eigenvectors
-```{r}
+```{r,fig.height=10, fig.width=10,echo=FALSE}
 matrix_cor_df <- cor_matrix_cal(vector1[,1:30],vector2[,1:30])
 par(mar=c(5, 4, 4, 4))
 plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
