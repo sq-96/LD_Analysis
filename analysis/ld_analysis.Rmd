@@ -127,7 +127,7 @@ vector_cor_df
 ```
 
 #### Pairwise correlation between two sets of eigenvectors
-```{r,fig.height=10, fig.width=10,echo=FALSE}
+```{r,fig.height=5, fig.width=6,echo=FALSE}
 matrix_cor_df <- cor_matrix_cal(vector1,vector3)
 par(mar=c(5, 4, 4, 4))
 plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
@@ -215,7 +215,7 @@ vector_cor_df
 ```
 
 #### Pairwise correlation between two sets of eigenvectors
-```{r,fig.height=10, fig.width=10,echo=FALSE}
+```{r,fig.height=5, fig.width=6,echo=FALSE}
 matrix_cor_df <- cor_matrix_cal(vector1[,1:30],vector2[,1:30])
 par(mar=c(5, 4, 4, 4))
 plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
@@ -303,7 +303,7 @@ vector_cor_df
 ```
 
 #### Pairwise correlation between two sets of eigenvectors
-```{r,fig.height=10, fig.width=10,echo=FALSE}
+```{r,fig.height=5, fig.width=6,echo=FALSE}
 matrix_cor_df <- cor_matrix_cal(vector1[,1:30],vector2[,1:30])
 par(mar=c(5, 4, 4, 4))
 plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
