@@ -13,7 +13,12 @@ Comparing eigenvalues and eigenvectors of LD matrices calcualted with different 
 ## Method
 Data is from 1000 Genome EUR ancestry (~500 individuals). Samples are randomly splitted into 3 subsets, each has 160 individuals. Using PLINL to alculate LD matrices with variants (MAF > 0.05) in three SCZ loci. 
 
-## Result
+## Resul
+```{r}
+library(plot.matrix)
+library(RColorBrewer)
+```
+
 ```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
 set.seed(2021)
 sample_list <- read.table("/project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.1.fam",header=FALSE,sep=" ")
@@ -25,17 +30,39 @@ subsample3 <- sample_list_split$`3`
 
 write.table(subsample1,file = "./data/EUR_subpop1.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALSE)
 write.table(subsample2,file = "./data/EUR_subpop2.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALSE)
-write.table(subsample3,file = "./data/EUR_subpop3.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALSE)
+write.table(subsample3,file = "./data/EUR_subpop3.txt",sep='\t',quote = FALSE,col.names = FALSE,row.names = FALS```
 ```
 
+```{r}
+cor_cal <- function(vec1,vec2,num=10){
+  cor_vec <- c()
+  for(i in 1:num){
+    cor_vec[i] <- round(cor(vec1[,i],vec2[,i]),3)
+  }
+  return(cor_vec)
+}
+
+cor_matrix_cal <- function(vec1,vec2){
+  num <- dim(vec1)[2]
+  cor_matrix <- matrix(NA,nrow = num,ncol = num)
+  for(i in 1:num){
+    for(j in 1:num){
+      cor_matrix[i,j] <- round(cor(vec1[,i],vec2[,j]),3)
+    }
+  }
+  return(cor_matrix)
+}
+```
+
+### chr15 91416560-91429040
 ```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop1.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop1")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop1.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop1")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop2.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop2")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop2.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop2")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop3.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop3")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --keep ./data/EUR_subpop3.txt --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR_subpop3")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.15 --chr 15 --from-bp 91416560 --to-bp 91429040 --write-snplist --maf 0.05 --r --matrix --out ./data/chr15_91416560_91429040_EUR/chr15_91416560_91429040_EUR")
 ```
 
 ```{r,message=FALSE,results=FALSE,echo=FALSE}
@@ -83,7 +110,6 @@ vector3 <- result3$vectors
 vector4 <- result4$vectors
 ```
 
-### chr15 91416560-91429040
 #### The first ten eigenvalues
 ```{r,echo=FALSE}
 value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
@@ -91,25 +117,20 @@ rownames(value_df) <- c("EUR_sub1","EUR_sub2","EUR_sub3","EUR_All")
 value_df
 ```
 
-```{r,echo=FALSE}
-cor_cal <- function(vec1,vec2,num=10){
-  cor_vec <- c()
-  for(i in 1:num){
-    cor_vec[i] <- round(cor(vec1[,i],vec2[,i]),3)
-  }
-  return(cor_vec)
-}
-```
-
 #### Pairwise correlation of the ith eigenvectors
 ```{r,echo=FALSE}
-library(plot.matrix)
-library(RColorBrewer)
 vector_cor_df <-rbind(cor_cal(vector1,vector2),cor_cal(vector1,vector3),cor_cal(vector2,vector3),
                       cor_cal(vector1,vector4),cor_cal(vector2,vector4),cor_cal(vector3,vector4))
 rownames(vector_cor_df) <- c("sub1.vs.sub2","sub1.vs.sub3","sub2.vs.sub3",
                              "sub1.vs.All","sub2.vs.All","sub3.vs.All")
 vector_cor_df
+```
+
+#### Pairwise correlation between two sets of eigenvectors
+```{r}
+matrix_cor_df <- cor_matrix_cal(vector1,vector3)
+par(mar=c(5, 4, 4, 4))
+plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
 ```
 
 #### Heatmap of LD matrix
@@ -121,14 +142,15 @@ plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_s
 plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All',  col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
 ```
 
+### chr8 4177794-4192544
 ```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./data/EUR_subpop1.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./data/EUR_subpop1.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop1")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./data/EUR_subpop2.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop2")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./data/EUR_subpop2.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop2")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./data/EUR_subpop3.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop3")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --keep ./data/EUR_subpop3.txt --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR_subpop3")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.8 --chr 8 --from-bp 4177794 --to-bp 4192544 --write-snplist --maf 0.05 --r --matrix --out ./data/chr8_4177794_4192544_EUR/chr8_4177794_4192544_EUR")
 ```
 
 ```{r,message=FALSE,results=FALSE,echo=FALSE}
@@ -176,22 +198,11 @@ vector3 <- result3$vectors
 vector4 <- result4$vectors
 ```
 
-### chr8 4177794-4192544
 #### The first ten eigenvalues
 ```{r,echo=FALSE}
 value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
 rownames(value_df) <- c("EUR_sub1","EUR_sub2","EUR_sub3","EUR_All")
 value_df
-```
-
-```{r,echo=FALSE}
-cor_cal <- function(vec1,vec2,num=10){
-  cor_vec <- c()
-  for(i in 1:num){
-    cor_vec[i] <- round(cor(vec1[,i],vec2[,i]),3)
-  }
-  return(cor_vec)
-}
 ```
 
 #### Pairwise correlation of the ith eigenvectors
@@ -203,8 +214,15 @@ rownames(vector_cor_df) <- c("sub1.vs.sub2","sub1.vs.sub3","sub2.vs.sub3",
 vector_cor_df
 ```
 
+#### Pairwise correlation between two sets of eigenvectors
+```{r}
+matrix_cor_df <- cor_matrix_cal(vector1[,1:30],vector2[,1:30])
+par(mar=c(5, 4, 4, 4))
+plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
+```
+
 #### Heatmap of LD matrix
-```{r,fig.height=10, fig.width=10,echo=FALSE}
+```{r,fig.height=10, fig.width=10,echo=FALSE,eval=FALSE}
 par(mar=c(5, 4, 4, 2),mfrow=c(2,2))
 plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
 plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
@@ -212,15 +230,15 @@ plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_s
 plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All',  col=brewer.pal(8,name = "Reds"),spacing.key=c(2,2,1))
 ```
 
-
+### chr10 18681005-18770105
 ```{r,message=FALSE,results=FALSE,echo=FALSE,eval=FALSE}
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --keep ./data/EUR_subpop1.txt --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR_subpop1")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --keep ./data/EUR_subpop1.txt --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR_subpop1")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --keep ./data/EUR_subpop2.txt --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR_subpop2")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --keep ./data/EUR_subpop2.txt --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR_subpop2")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --keep ./data/EUR_subpop3.txt --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR_subpop3")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --keep ./data/EUR_subpop3.txt --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR_subpop3")
 
-system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r2 --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR")
+system("/software/plink-1.90-el7-x86_64/plink --bfile /project2/xinhe/1kg/1000G_EUR_Phase3_plink/1000G.EUR.QC.10 --chr 10 --from-bp 18681005 --to-bp 18770105 --write-snplist --maf 0.05 --r --matrix --out ./data/chr10_18681005_18770105_EUR/chr10_18681005_18770105_EUR")
 ```
 
 ```{r,message=FALSE,results=FALSE,echo=FALSE}
@@ -268,22 +286,11 @@ vector3 <- result3$vectors
 vector4 <- result4$vectors
 ```
 
-### chr10 18681005-18770105
 #### The first ten eigenvalues
 ```{r,echo=FALSE}
 value_df <- rbind(value1[1:10],value2[1:10],value3[1:10],value4[1:10])
 rownames(value_df) <- c("EUR_sub1","EUR_sub2","EUR_sub3","EUR_All")
 value_df
-```
-
-```{r,echo=FALSE}
-cor_cal <- function(vec1,vec2,num=10){
-  cor_vec <- c()
-  for(i in 1:num){
-    cor_vec[i] <- round(cor(vec1[,i],vec2[,i]),3)
-  }
-  return(cor_vec)
-}
 ```
 
 #### Pairwise correlation of the ith eigenvectors
@@ -295,13 +302,9 @@ rownames(vector_cor_df) <- c("sub1.vs.sub2","sub1.vs.sub3","sub2.vs.sub3",
 vector_cor_df
 ```
 
-#### Heatmap of LD matrix
-```{r,fig.height=15, fig.width=15,echo=FALSE}
-#library(plot.matrix)
-#library(RColorBrewer)
-#par(mar=c(5, 4, 4, 2),mfrow=c(2,1))
-#plot(as.matrix(ld1), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub1', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
-#plot(as.matrix(ld2), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub2', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
-#plot(as.matrix(ld3), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_sub3', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
-#plot(as.matrix(ld4), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='EUR_All', col=brewer.pal(5,name = "Reds"),spacing.key=c(2,2,1))
+#### Pairwise correlation between two sets of eigenvectors
+```{r}
+matrix_cor_df <- cor_matrix_cal(vector1[,1:30],vector2[,1:30])
+par(mar=c(5, 4, 4, 4))
+plot(as.matrix(matrix_cor_df), axis.col=NULL, axis.row=NULL, xlab='', ylab='', main='sub1 vs sub2', col=brewer.pal(5,name = "RdBu"),spacing.key=c(2,2,1))
 ```
