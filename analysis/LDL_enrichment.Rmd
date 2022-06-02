@@ -28,7 +28,7 @@ known_annotations <- unique(known_annotations$`Gene Symbol`)
 library(data.table)
 library("AnnotationDbi")
 library("org.Hs.eg.db")
-data <- fread(file = "./data/magma.genes.out")
+data <- fread(file = "./data/magma.genes.out.LDL")
 data$flag <- 0
 data[which(data$SYMBOL %in% known_annotations),]$flag <-1
 data$entrez = mapIds(org.Hs.eg.db,
