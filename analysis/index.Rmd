@@ -8,6 +8,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-LD Analysis Results [link](ld_analysis.html).
-
-Welcome to my research website.
+LDL Enrichment Analysis Results [link](LDL_enrichment.html).
